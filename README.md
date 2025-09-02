@@ -80,4 +80,3 @@ For inquiries, partnerships, or feedback:
 * 👩‍💼 **Founder/CEO:** Getruda Vitus
 * 📧 **Email:** [your email](mailto:getrudavitus200@gmail.com)
 
-![Mental Wellness](https://via.placeholder.com/600x200.png?text=Take+Care+of+Your+Mind+%E2%9C%A8)
