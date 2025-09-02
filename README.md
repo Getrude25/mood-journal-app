@@ -41,7 +41,7 @@ Mood Journal is a **digital mental health companion** designed to help users tra
    ```bash
    npm run dev
    ```
-5. Open `http://localhost:3000` in your browser.
+5. Open `http://localhost:5000` in your browser.
 
 ---
 
