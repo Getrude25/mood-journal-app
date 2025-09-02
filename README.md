@@ -78,6 +78,6 @@ This project is licensed under the MIT License – see the LICENSE file for deta
 For inquiries, partnerships, or feedback:
 
 * 👩‍💼 **Founder/CEO:** Getruda Vitus
-*    ** 
+*    ** Developer: ** Bilal Mustapha
 * 📧 **Email:** [your email](mailto:getrudavitus200@gmail.com)
 
