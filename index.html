@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Journal - AI Emotion Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <span>MoodJournal</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#journal">Journal</a></li>
+                    <li><a href="#analysis">Analysis</a></li>
+                    <li><a href="#pricing">Premium</a></li>
+                    <li><a href="#" class="btn btn-outline" id="loginBtn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Track Your Emotional Trends</h1>
+            <p>MoodJournal uses advanced AI to analyze your emotions and help you understand your mental wellbeing patterns over time.</p>
+            <a href="#journal" class="btn btn-primary">Start Journaling</a>
+        </div>
+    </section>
+
+    <!-- Main App -->
+    <section class="container">
+        <div class="app-container">
+            <div class="journal-section" id="journal">
+                <h2 class="section-title"><i class="fas fa-edit"></i> Daily Journal</h2>
+                <div class="mood-form">
+                    <div class="emotion-buttons">
+                        <div class="emotion-btn" data-emotion="happy">😊 Happy</div>
+                        <div class="emotion-btn" data-emotion="sad">😢 Sad</div>
+                        <div class="emotion-btn" data-emotion="excited">😆 Excited</div>
+                        <div class="emotion-btn" data-emotion="angry">😠 Angry</div>
+                        <div class="emotion-btn" data-emotion="anxious">😰 Anxious</div>
+                        <div class="emotion-btn" data-emotion="grateful">🙏 Grateful</div>
+                        <div class="emotion-btn" data-emotion="tired">😴 Tired</div>
+                        <div class="emotion-btn" data-emotion="calm">😌 Calm</div>
+                    </div>
+                    <textarea id="journal-entry" placeholder="How are you feeling today? Write about your day, your feelings, or anything on your mind..."></textarea>
+                    <button class="btn btn-primary" onclick="saveEntry()">Save Entry</button>
+                    <button class="btn btn-outline" onclick="analyzeMood()">Analyze Mood</button>
+                </div>
+                
+                <div class="entry-list">
+                    <h3>Previous Entries</h3>
+                    <div id="entries-container">
+                        <!-- Entries will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="analysis-section" id="analysis">
+                <h2 class="section-title"><i class="fas fa-chart-line"></i> Mood Analysis</h2>
+                <div class="result-container">
+                    <h4>Current Analysis:</h4>
+                    <div class="mood-score">
+                        <span id="mood-emoji" class="mood-emoji">😊</span>
+                        <span id="mood-result">Submit an entry to see analysis</span>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="mood-chart"></canvas>
+                    </div>
+                    
+                    <div class="insights">
+                        <h4>Your Emotional Trends</h4>
+                        <div class="insight-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <span id="insight-1">You tend to be happiest on weekends</span>
+                        </div>
+                        <div class="insight-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <span id="insight-2">Your mood improves after exercise</span>
+                        </div>
+                        <div class="insight-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <span id="insight-3">You often feel anxious before meetings</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Upgrade to Premium</h2>
+            <div class="pricing-options">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>5 journal entries per month</li>
+                        <li>Basic emotion analysis</li>
+                        <li>7-day history view</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Current Plan</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Premium</h3>
+                    <div class="price">$4.99<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>Unlimited journal entries</li>
+                        <li>Advanced emotion analysis</li>
+                        <li>Full history tracking</li>
+                        <li>Detailed insights & trends</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <button class="btn" onclick="showPaymentForm('monthly')">Subscribe Now</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Annual</h3>
+                    <div class="price">$49.99<span>/year</span></div>
+                    <ul class="pricing-features">
+                        <li>All Premium features</li>
+                        <li>Save 16% compared to monthly</li>
+                        <li>Free mental wellness guide</li>
+                        <li>Export your data</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="showPaymentForm('annual')">Choose Annual</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="payment-section" id="payment" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Subscribe to Premium</h2>
+            <div class="payment-container">
+                <h3>Complete Your Subscription</h3>
+                <p>Enter your payment details to unlock all Premium features</p>
+                
+                <div class="payment-methods">
+                    <div class="payment-method selected" id="method-clickpesa">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div>ClickPesa</div>
+                    </div>
+                    <div class="payment-method" id="method-card">
+                        <i class="far fa-credit-card"></i>
+                        <div>Credit Card</div>
+                    </div>
+                    <div class="payment-method" id="method-paypal">
+                        <i class="fab fa-paypal"></i>
+                        <div>PayPal</div>
+                    </div>
+                </div>
+                
+                <div class="payment-form">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Your email address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number (for ClickPesa)</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="+255 XXX XXX XXX">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="plan">Select Plan</label>
+                        <select id="plan" class="form-control">
+                            <option value="monthly">Monthly Premium - $4.99/month</option>
+                            <option value="annual">Annual Premium - $49.99/year</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-success" style="width: 100%;" onclick="processPayment()">
+                        <i class="fas fa-lock"></i> Complete Payment via ClickPesa
+                    </button>
+                    
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">
+                        Your payment is secure and encrypted. By subscribing, you agree to our Terms of Service.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MoodJournal</h3>
+                    <p>Track your emotions, understand your patterns, and improve your mental wellbeing with AI-powered insights.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#journal">Journal</a></li>
+                        <li><a href="#analysis">Analysis</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#payment">Subscribe</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 MoodJournal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Payment Successful!</h2>
+            <p>Thank you for subscribing to MoodJournal Premium. Your account has been upgraded.</p>
+            <p>You will receive a confirmation email shortly.</p>
+            <button class="btn btn-primary" style="margin-top: 1.5rem;" onclick="closeModal()">Continue to App</button>
+        </div>
+    </div>
+ 
+<script src="script.js"></script>
+        
+</body>
+</html>
