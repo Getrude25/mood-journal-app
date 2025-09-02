@@ -1,0 +1,11 @@
+MoodJournal/
+├── app.py                 # Main Flask application
+├── models.py             # Database models
+├── requirements.txt      # Python dependencies
+├── config.py            # Configuration settings
+├── routes/
+│   ├── auth.py          # Authentication routes
+│   ├── journal.py       # Journal entry routes
+│   └── payment.py       # Payment processing routes
+└── utils/
+    └── sentiment.py     # Sentiment analysis utility
